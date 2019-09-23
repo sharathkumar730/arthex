@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json-logger="http://www.mulesoft.org/schema/mule/json-logger" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/json-logger http://www.mulesoft.org/schema/mule/json-logger/current/mule-json-logger.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b3127827-e64d-4319-a131-beb6f8a9a38d" basePath="${environment.http.listener.base-uri}" >
+		<http:listener-connection host="0.0.0.0" port="${environment.http.listener.port}" />
+	</http:listener-config>
+	<json-logger:config name="JSON_Logger_Config" doc:name="JSON Logger Config" doc:id="e77f4314-bb97-45c4-93f9-127e79f7afbf" disabledFields="${json.logger.disabled.fields}" />
+	<configuration-properties doc:name="app-configuration-properties" doc:id="c71c10b0-6a8b-43f1-8616-5f6df39733cc" file="app.yaml" />
+	<configuration-properties doc:name="env-configuration-properties" doc:id="184c3fb0-82dc-4a02-8b16-527bccd41dc7" file="properties/${mule.env}.yaml" />
+	<flow name="sys-mjc-testerFlow" doc:id="b6845500-4308-4d14-bf34-b3d161d7d947" >
+		<http:listener doc:name="Listener" doc:id="d0068ae6-0cb3-4d0d-a6de-fe0cf5be8068" config-ref="HTTP_Listener_config" path="${environment.http.listener.resources}"/>
+		<logger level="INFO" doc:name="Logger" doc:id="dc219703-0de0-4133-8c9a-04060763cb9c" message='#["HI"]'/>
+		<json-logger:logger doc:name="Logger" doc:id="cce2079b-520e-4259-b24b-4c45f2bc1816" message="GOT A MESSAGE TO LOG" config-ref="JSON_Logger_Config"/>
+		<set-payload value='#["HELLO THERE!"]' doc:name="Set Payload" doc:id="795e3d4f-fac3-4dc3-be23-603a99386a40" />
+	</flow>
+</mule>

@@ -1,0 +1,27 @@
+{
+  "configs": [
+    "sys-mjc-tester.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "780e2056-91a3-4a6e-8058-2a9dbff06def:sys-mjc-tester:1.0.0",
+  "minMuleVersion": "4.2.0",
+  "requiredProduct": "MULE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "app.yaml",
+        "log4j2.xml",
+        "properties/dev-local.yaml",
+        "properties/dev.yaml",
+        "sys-mjc-tester.xml"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}
